@@ -3,7 +3,12 @@ package org.jajworld.theshinylog.service;
 import org.jajworld.theshinylog.model.Person;
 import org.jajworld.theshinylog.model.Pokemon;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import org.jajworld.theshinylog.model.FormattedHunts;
@@ -207,6 +212,26 @@ public class ListHunts {
 			thishunt.setEncounters(hunts.get(i).getEncounters());
 			thishunt.setNotes(hunts.get(i).getNotes());
 			
+			try 
+			{
+				Blob blob = hunts.get(i).getPic();
+				if(blob != null) 
+				{
+					byte[] bytes = blob.getBytes(1, (int) blob.length());
+					byte[] encodeBase64 = Base64.getEncoder().encode(bytes);
+					String base64Encoded = new String(encodeBase64, "UTF-8");
+					thishunt.setPic(base64Encoded);
+				}
+				else  
+				{
+					thishunt.setPic(null);
+				}
+			} 
+			catch (SQLException | UnsupportedEncodingException e) 
+			{
+				e.printStackTrace();
+			} 
+
 			fhunts.add(thishunt);
 		}
 		

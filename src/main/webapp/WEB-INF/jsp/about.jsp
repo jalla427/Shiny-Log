@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<title>Delete hunt</title>
+	<title>About hunt</title>
 	<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -33,13 +33,14 @@
 	</div>
 	
 	<div class="container">
-		<c:forEach items="${hunts}" var="hunt">
-			<p>${hunt.notes}</p>
-		</c:forEach>
+		<a type="button" class="btn btn-success" href="/records">Back</a>
 	</div>
 	
 	<div class="container">
-		<a type="button" class="btn btn-success" href="/records">Back</a>
+		<c:forEach items="${hunts}" var="hunt">
+			<p>${hunt.notes}</p>
+			<img src="data:image/jpg;base64,${hunt.pic}"/></img>
+		</c:forEach>
 	</div>
 	
 	<script src="webjars/jquery/1.9.1/jquery.min.js"></script>

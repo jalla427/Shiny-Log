@@ -1,5 +1,9 @@
 package org.jajworld.theshinylog.model;
 
+import java.io.UnsupportedEncodingException;
+import java.sql.Blob;
+import java.sql.SQLException;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -14,7 +18,7 @@ public class Hunts {
 	private Integer encounters;
 	private Integer gen;
 	private String notes;
-	private byte[] pic;
+	private Blob pic;
 	
 	public Integer getHid() {
 		return hid;
@@ -52,10 +56,10 @@ public class Hunts {
 	public void setNotes() {
 		this.notes = notes;
 	}
-	public byte[] getPic() {
-		return pic;
+	public Blob getPic() {
+		return this.pic;
 	}
-	public void setPic(byte[] pic) {
+	public void setImage(Blob pic) {
 		this.pic = pic;
 	}
 }
